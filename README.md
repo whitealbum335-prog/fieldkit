@@ -45,3 +45,67 @@ IP region results are approximate, domain registration data can be incomplete, a
 5. Wait for the Pages deployment and open the URL shown in the Pages settings.
 
 The site uses relative asset paths and works from a GitHub Pages project URL. There is no build command or secret configuration. Never commit API keys, passwords, or other secrets. Choose and add a license before allowing others to reuse the code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fieldkit
+Fieldkit, statik ve tarayıcı tabanlı bir savunma güvenliği araç kutusudur. Derleme adımı, paket bağımlılığı veya sunucu tarafında çalışan kod içermez.
+Arayüz
+Araçları yerel olarak filtrelemek için gezinme bölümündeki Find a tool alanını kullanın; ilk eşleşen aracı açmak için Enter’a basın. Tema düğmesi, geçerli sayfa görünümünü koyu ve açık modlar arasında değiştirir.
+
+Arayüz masaüstü ekranlar için optimize edilmiştir. İçeriğin okunabilir kalması için dar pencerelerde gezinme ve kart düzeni uyum sağlar. Koyu tema; neon ve siberpunk esintili, ölçülü bir renk paleti, çizim tarzında bir gece silüeti, fütüristik yollarda ilerleyen trafik ve uçan araçlar kullanır. Animasyonlar, işletim sisteminin prefers-reduced-motion ayarına uyar.
+Yerel olarak çalıştırma
+index.html dosyasını modern bir tarayıcıda açın. Pano ve Web Crypto özellikleri için https:// veya http://localhost gibi güvenli bir bağlam kullanın. Python ile yerel sunucu başlatmak için proje klasöründe python -m http.server 8000 komutunu çalıştırıp http://localhost:8000 adresini ziyaret edin.
+Araçlar
+- Yerel parola gücü tahmini ve kriptografik olarak rastgele parola oluşturucu
+- Yerel SHA-256 karma değeri hesaplama ile Base64, URL bileşeni ve onaltılık biçim dönüştürme
+- IPv4 CIDR alt ağ hesaplayıcısı
+- Kayıt kuruluşu, kayıt ve sona erme tarihleri, ad sunucuları, DNSSEC ve durum bilgileri için herkese açık alan adı kayıt sorgusu
+- Kullanıcı isteğiyle çalışan; herkese açık IP’yi, sağlayıcıyı, ASN’yi, genel bölgeyi ve saat dilimini gösteren bağlantı özeti
+- Güvenli bağlam durumu, çerezler, gizlilik tercihi, dil, saat dilimi ve ekran boyutunu gösteren yerel tarayıcı gizliliği özeti
+- Herkese açık RDAP hizmeti rdap.org üzerinden IPv4 tahsis sorgusu
+- Yaygın hizmet portları için çevrimdışı başvuru kaynağı
+- Yerel Gmail adres biçimi denetimi, Google’ın resmî hesap güvenliği bağlantıları ve kullanıcı tarafından başlatılan Have I Been Pwned hesap sorgusuna yönlendirme; sonuçları değerlendirmek için elle girilen rehberlik
+- Have I Been Pwned’ın ücretsiz Pwned Passwords aralık API’si üzerinden ele geçirilmiş parola denetimi
+- Popüler hizmetler için hazır ayarlar içeren, yalnızca yerel çalışan kullanıcı adı tekrar kullanımı denetimi; yalnızca kullanıcının eklediği hesapları karşılaştırır
+- Hesap güvenliği, alan adı ve ağ, gizlilik ve savunma amaçlı öğrenme kaynaklarından oluşan; yerel olarak aranabilen seçki
+Parola oluşturma ve güç tahmini, karma hesaplama, kodlama, alt ağ, tarayıcı ayrıntıları, Gmail adres biçimi ve kullanıcı adı tekrar kullanımı özellikleri yerel olarak çalışır. Kullanıcı adı denetimi girdileri geçicidir; bellekte tutulur, kaydedilmez veya gönderilmez. Uygulama yalnızca kullanıcının eklediği hesapları karşılaştırır ve platformlarda arama yapmaz.
+
+Ele geçirilmiş parola denetiminde parola, yerel olarak SHA-1 ile özetlenir. Ardından HTTPS üzerinden ücretsiz Have I Been Pwned Pwned Passwords aralık API’sine yalnızca ilk beş karma karakteri gönderilir; dönen son ekler yerel olarak karşılaştırılır. Parolanın kendisi ve tam karma değeri gönderilmez. Denetimden sonra alan temizlenir. Yine de karma öneki HIBP’ye gönderilir ve istekler kaydedilebilir. Eşleşme varsa yalnızca görülme sayısı bildirilir; parolanın hangi veri ihlallerinde yer aldığı belirtilmez. Eşleşme olmaması, parolanın güvenli olduğunu garanti etmez. Bu denetim, e-posta adreslerinin veri ihlallerinde yer alıp almadığını sorgulamaz.
+
+Kaynaklar dizini, OSINT Catalog’dan esinlenen seçilmiş bir listedir. Arama ve kategori filtreleri yerel olarak çalışır. Dizin; hesap güvenliği, herkese açık teknik üst veriler, gizlilik ve savunma amaçlı öğrenme kaynaklarına bağlantı verir. Harici sitelerin kendi kullanım koşulları ve gizlilik uygulamaları vardır. Fieldkit, kataloğun kişi arama veya hesap listeleme iş akışlarını yeniden sunmaz.
+
+Gmail öz denetimi, kullanıcının girdiği adres için resmî Have I Been Pwned hesap sayfasına doğrudan bağlantı oluşturur. Bu bağlantıya tıklamak adresi HIBP’ye gönderir ve adres tarayıcı geçmişinde veya hizmet günlüklerinde görünebilir. Fieldkit sonuçları almaz; kullanıcı, sonraki adımlara yönelik yerel rehberlik için genel bir sonuç kategorisini elle kaydeder. HIBP’nin e-posta arama API’si API anahtarı gerektirir; bu nedenle Fieldkit API’yi çağırmaz ve otomatik sonuç aldığını iddia etmez.
+
+Bağlantı özeti, yalnızca ziyaretçi düğmesine tıkladıktan sonra ipwho.is adresine istek gönderir. Bu hizmet ziyaretçinin herkese açık IP’sini görebilir ve istekleri kaydedebilir. Elle başlatılan IP tahsisi ve alan adı kayıt sorguları, girilen değeri herkese açık kayıt verisi hizmetlerine yönlendiren rdap.org adresine gönderir. Bu hizmetler istekleri kaydedebilir ve kullanım koşulları ya da hız sınırları uygulayabilir. API anahtarı kullanılmaz.
+
+IP bölgesi sonuçları yaklaşık değerlerdir; alan adı kayıt verileri eksik olabilir ve tarayıcı denetimleri yalnızca bilgilendirme amaçlıdır. Fieldkit; kayıt sahibi kişilerin iletişim bilgilerini veya sızdırılmış kayıtları almaz, e-posta gelen kutularına erişmez, hesapları listelemez, VPN, proxy, DNS ya da WebRTC sızıntılarını test etmez, kişileri belirlemez, sunamaları taramaz ve kimlik bilgisi tahmininde kullanılacak sözcük listeleri oluşturmaz. Bir gizlilik puanının güvenliği veya anonimliği garanti edebileceğini iddia etmez.
+GitHub Pages ile yayımlama
+1. Bir GitHub deposu oluşturun ve proje dosyalarını deponun kök dizinine ekleyin: index.html, styles.css, app.js ve README.md.
+2. Depoda Settings → Pages bölümünü açın.
+3. Build and deployment altında Deploy from a branch seçeneğini seçin.
+4. main dalını ve /(root) dizinini seçip kaydedin.
+5. Pages dağıtımının tamamlanmasını bekleyin ve Pages ayarlarında gösterilen URL’yi açın.
+Site göreli dosya yolları kullanır ve GitHub Pages proje URL’si üzerinden çalışır. Derleme komutu veya gizli yapılandırma gerekmez. API anahtarlarını, parolaları veya başka gizli bilgileri asla depoya göndermeyin. Başkalarının kodu yeniden kullanmasına izin vermeden önce bir lisans seçip ekleyin.
