@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101522" id="theme-color">
+    <meta name="description" content="Fieldkit is a browser-based defensive security toolbox with optional, transparent public IP information.">
+    <title>Fieldkit — Defensive Security Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="city-backdrop" aria-hidden="true">
+      <svg class="city-art" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="city-sky" x2="0" y2="1">
+            <stop stop-color="#101329"/>
+            <stop offset=".58" stop-color="#251b3d"/>
+            <stop offset="1" stop-color="#0b1725"/>
+          </linearGradient>
+          <linearGradient id="city-haze" x2="0" y2="1">
+            <stop stop-color="#e547c8" stop-opacity=".34"/>
+            <stop offset="1" stop-color="#36dff2" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="tower-cyan" x2="1" y2="1">
+            <stop stop-color="#17283c"/>
+            <stop offset="1" stop-color="#0a111f"/>
+          </linearGradient>
+          <linearGradient id="tower-violet" x2="1" y2="1">
+            <stop stop-color="#2a203e"/>
+            <stop offset="1" stop-color="#101522"/>
+          </linearGradient>
+          <pattern id="cyan-windows" width="38" height="46" patternUnits="userSpaceOnUse">
+            <path d="M7 9h12v20H7z" fill="#63e8f4" opacity=".53"/>
+            <path d="M26 9h5v20h-5z" fill="#dd66f1" opacity=".25"/>
+          </pattern>
+          <pattern id="warm-windows" width="43" height="51" patternUnits="userSpaceOnUse">
+            <path d="M9 10h10v22H9z" fill="#f3bd71" opacity=".44"/>
+            <path d="M27 10h8v22h-8z" fill="#55dbea" opacity=".3"/>
+          </pattern>
+          <filter id="neon-blur" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="13"/>
+          </filter>
+        </defs>
+        <path fill="url(#city-sky)" d="M0 0h1920v1080H0z"/>
+        <circle cx="1480" cy="285" r="205" fill="#dd48d0" opacity=".13" filter="url(#neon-blur)"/>
+        <circle cx="1480" cy="285" r="100" fill="#ee88db" opacity=".2"/>
+        <path fill="url(#city-haze)" d="M0 580h1920v330H0z"/>
+        <g fill="#e749db" opacity=".12" filter="url(#neon-blur)">
+          <path d="M270 430h160v440H270z"/>
+          <path d="M1190 330h190v540h-190z"/>
+          <path d="M1530 470h170v400h-170z"/>
+        </g>
+        <g class="sky-vehicle sky-vehicle-cyan">
+          <g transform="translate(0 218)">
+            <path d="M-102 5l38-14h94l42 14-42 14h-94z" fill="#12283a" stroke="#52f2ff" stroke-width="3"/>
+            <path d="M-24-8l17-18h47l20 18z" fill="#3c7280" stroke="#52f2ff" stroke-width="2"/>
+            <path d="M-62 0h112" stroke="#d4fbff" stroke-width="3" opacity=".8"/>
+            <path d="M-102 5h-132" stroke="#52f2ff" stroke-width="3" opacity=".36"/>
+            <circle cx="55" cy="5" r="4" fill="#c7fbff"/>
+          </g>
+        </g>
+        <g class="sky-vehicle sky-vehicle-magenta">
+          <g transform="translate(0 318)">
+            <g transform="scale(-1 1)">
+              <path d="M-72 4l29-11h55l34 11-34 11h-55z" fill="#291b36" stroke="#f454dc" stroke-width="2.5"/>
+              <path d="M-18-6l13-13h29l16 13z" fill="#80517c" stroke="#f454dc" stroke-width="1.5"/>
+              <path d="M-48 0h78" stroke="#ffe0fc" stroke-width="2" opacity=".8"/>
+              <path d="M-72 4h-92" stroke="#f454dc" stroke-width="2.5" opacity=".34"/>
+              <circle cx="39" cy="4" r="3" fill="#ffd7fb"/>
+            </g>
+          </g>
+        </g>
+        <g opacity=".82">
+          <path fill="#111a2b" d="M0 600h125V405h22V360h55v240h106V480h46v-92h20v-54h48v266h93V445h34V325h17v-90h54v365h85V470h67v-95h31v-72h61v297h72V485h36V343h48v-83h52v363h74V447h34V340h41v-99h57v359h75V450h44V358h57v242h73V422h39V330h46v270h91V444h63V320h50v280h86V438h47v-75h51v237h81v480H0z"/>
+          <path fill="url(#tower-cyan)" d="M96 440h144v520H96zM389 330h114v630H389zM581 373h146v587H581zM810 295h137v665H810zM1024 260h156v700h-156zM1287 340h132v620h-132zM1491 320h165v640h-165zM1730 375h124v585h-124z"/>
+          <path fill="url(#tower-violet)" d="M96 440h144v520H96zM389 330h114v630H389zM581 373h146v587H581zM810 295h137v665H810zM1024 260h156v700h-156zM1287 340h132v620h-132zM1491 320h165v640h-165zM1730 375h124v585h-124z"/>
+          <path fill="url(#cyan-windows)" d="M108 452h120v500H108zM399 342h94v610h-94zM592 385h124v567H592zM822 307h113v645H822zM1037 272h130v680h-130zM1299 352h108v600h-108zM1504 332h139v620h-139zM1742 387h100v565h-100z"/>
+          <path fill="url(#warm-windows)" d="M0 615h80v337H0zM249 615h93v337h-93zM510 615h60v337h-60zM736 615h63v337h-63zM958 615h56v337h-56zM1187 615h91v337h-91zM1428 615h60v337h-60zM1665 615h58v337h-58zM1858 615h62v337h-62z"/>
+          <path fill="#0c121e" d="M0 927h1920v153H0z"/>
+          <path fill="#24d9ed" opacity=".62" d="M0 925h1920v3H0z"/>
+          <path fill="#f04ad7" opacity=".55" d="M0 954h1920v2H0z"/>
+        </g>
+        <g fill="none" stroke-linecap="round">
+          <path class="city-neon-cyan" stroke="#52f2ff" stroke-width="8" d="M403 355v94h85"/>
+          <path class="city-neon-magenta" stroke="#f454dc" stroke-width="8" d="M1050 286h104v76"/>
+          <path class="city-neon-cyan" stroke="#52f2ff" stroke-width="7" d="M1517 351v112h110"/>
+          <path class="city-neon-magenta" stroke="#f454dc" stroke-width="6" d="M816 478h82v-86"/>
+          <path class="city-searchlight" stroke="#5feaff" stroke-width="2" d="M1150 400L1780 90"/>
+        </g>
+        <g fill="#e7f8ff" font-family="monospace" font-size="17" letter-spacing="5" opacity=".72">
+          <text x="1092" y="414">NIGHT / DISTRICT 09</text>
+          <text x="146" y="585">SIGNAL LOST</text>
+          <text x="1532" y="515">NEON</text>
+        </g>
+        <path fill="#070b13" d="M0 970h1920v110H0z" opacity=".62"/>
+        <g class="city-road">
+          <path fill="#080d18" d="M0 915Q960 875 1920 915v165H0z"/>
+          <path fill="#11192a" opacity=".78" d="M0 950Q960 915 1920 950v130H0z"/>
+          <path d="M0 919Q960 880 1920 919" fill="none" stroke="#52f2ff" stroke-width="4" opacity=".72"/>
+          <path d="M0 1067Q960 1025 1920 1067" fill="none" stroke="#f454dc" stroke-width="3" opacity=".58"/>
+          <path class="road-lane" d="M0 989Q960 960 1920 989" fill="none" stroke="#bcecf7" stroke-width="3" stroke-dasharray="76 66" opacity=".6"/>
+          <path class="road-lane road-lane-lower" d="M0 1034Q960 1006 1920 1034" fill="none" stroke="#52f2ff" stroke-width="2" stroke-dasharray="56 82" opacity=".42"/>
+          <g class="city-car city-car-far">
+            <g transform="translate(0 940)">
+            <path d="M-94 15h188l-17-24h-43l-21-19h-50l-25 19h-24z" fill="#121e31" stroke="#52f2ff" stroke-width="3"/>
+            <path d="M-43-28h48l16 16h-84z" fill="#31556a" opacity=".78"/>
+            <path d="M-89 12h26M70 12h17" stroke="#52f2ff" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="-55" cy="17" r="8" fill="#060911" stroke="#91f7ff" stroke-width="3"/>
+            <circle cx="55" cy="17" r="8" fill="#060911" stroke="#91f7ff" stroke-width="3"/>
+            <path d="M-110 8h-95" stroke="#52f2ff" stroke-width="3" opacity=".4"/>
+            </g>
+          </g>
+          <g class="city-car city-car-near">
+            <g transform="scale(-1 1)">
+              <g transform="translate(0 1018)">
+            <path d="M-116 20h232l-19-30h-56l-27-24h-66l-31 24h-47z" fill="#21162b" stroke="#f454dc" stroke-width="4"/>
+            <path d="M-49-34h58l20 21h-106z" fill="#74416f" opacity=".76"/>
+            <path d="M-108 15h35M79 15h27" stroke="#ff78e4" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="-69" cy="23" r="11" fill="#060911" stroke="#a8f8ff" stroke-width="4"/>
+            <circle cx="69" cy="23" r="11" fill="#060911" stroke="#a8f8ff" stroke-width="4"/>
+            <path d="M-126 12h-110" stroke="#f454dc" stroke-width="4" opacity=".48"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <span class="city-scanline"></span>
+    </div>
+    <a class="skip-link" href="#main">Skip to tools</a>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Fieldkit home">
+        <span class="brand-mark">F</span>
+        <span>fieldkit<span class="brand-dot">.</span></span>
+      </a>
+      <div class="topbar-actions">
+        <span class="topbar-note"><span class="status-dot"></span> Local-first security tools</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme"><span id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light mode</span></button>
+      </div>
+    </header>
+
+    <main class="shell" id="main">
+      <section class="intro">
+        <p class="eyebrow">DEFENSIVE TOOLBOX <span>·</span> VERSION 1</p>
+        <h1>Know your tools.<br><span>Protect what’s yours.</span></h1>
+        <p class="intro-copy">A small collection of practical security utilities. Local tools run in this browser; optional lookups send only the information you choose to enter to public services.</p>
+        <div class="notice"><span aria-hidden="true">ⓘ</span><p>Use these tools on your own accounts and systems, or where you have permission. This page does not scan hosts or identify people.</p></div>
+      </section>
+
+      <div class="workspace">
+        <nav class="tool-nav" aria-label="Tools">
+          <label class="tool-search-label" for="tool-search">Find a tool <span>Enter to open</span></label>
+          <input id="tool-search" class="tool-search" type="search" autocomplete="off" placeholder="Search tools…">
+          <p id="tool-search-status" class="tool-search-status" aria-live="polite"></p>
+          <button class="nav-item active" data-panel="passwords"><span class="nav-icon">✳</span>Password tools</button>
+          <button class="nav-item" data-panel="hash"><span class="nav-icon">⌗</span>Hash</button>
+          <button class="nav-item" data-panel="encode"><span class="nav-icon">⟷</span>Encode</button>
+          <button class="nav-item" data-panel="network"><span class="nav-icon">◉</span>IP calculator</button>
+          <button class="nav-item" data-panel="connection"><span class="nav-icon">◎</span>My connection</button>
+          <button class="nav-item" data-panel="lookup"><span class="nav-icon">⌕</span>IP lookup</button>
+          <button class="nav-item" data-panel="domain"><span class="nav-icon">⌘</span>Domain info</button>
+          <button class="nav-item" data-panel="gmail"><span class="nav-icon">@</span>Gmail self-audit</button>
+          <button class="nav-item" data-panel="username"><span class="nav-icon">◎</span>Username audit</button>
+          <button class="nav-item" data-panel="resources"><span class="nav-icon">▦</span>Resources</button>
+          <button class="nav-item" data-panel="ports"><span class="nav-icon">≡</span>Port guide</button>
+        </nav>
+
+        <section class="panel active" id="panel-passwords" aria-labelledby="password-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">ACCOUNT SAFETY</p><h2 id="password-title">Password tools</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Runs locally</span>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Strength check</h3>
+              <p class="muted">Checks length and character variety in your browser. The password is not saved or sent.</p>
+              <label for="password-input">Password</label>
+              <div class="input-wrap">
+                <input id="password-input" type="password" autocomplete="off" spellcheck="false" placeholder="Type or paste a password">
+                <button class="icon-button" id="toggle-password" type="button" aria-label="Show password">Show</button>
+              </div>
+              <div class="meter" aria-hidden="true"><span id="strength-meter"></span></div>
+              <p id="strength-result" class="result muted" aria-live="polite">Enter a password to check it.</p>
+              <ul id="password-tips" class="tips"></ul>
+            </article>
+            <article class="card">
+              <h3>Secure password generator</h3>
+              <p class="muted">Uses your browser’s cryptographic random-number generator.</p>
+              <label for="password-length">Length <span id="length-label">20</span></label>
+              <input id="password-length" type="range" min="8" max="64" value="20">
+              <div class="check-grid">
+                <label class="check"><input type="checkbox" id="include-upper" checked> Uppercase</label>
+                <label class="check"><input type="checkbox" id="include-lower" checked> Lowercase</label>
+                <label class="check"><input type="checkbox" id="include-numbers" checked> Numbers</label>
+                <label class="check"><input type="checkbox" id="include-symbols" checked> Symbols</label>
+              </div>
+              <button class="button primary full" id="generate-password" type="button">Generate password</button>
+              <div class="output-row">
+                <output id="generated-password" aria-live="polite">Your password will appear here</output>
+                <button class="icon-button" id="copy-password" type="button">Copy</button>
+              </div>
+              <p id="generator-status" class="feedback" aria-live="polite"></p>
+            </article>
+            <article class="card">
+              <h3>Compromised password check</h3>
+              <p class="muted">Check whether a password appears in HIBP’s public Pwned Passwords dataset. The password stays in this browser.</p>
+              <label for="breach-password">Password to check</label>
+              <input id="breach-password" type="password" autocomplete="off" spellcheck="false" placeholder="Enter a password">
+              <button class="button primary full" id="check-breached-password" type="button">Check password</button>
+              <p id="breach-password-status" class="feedback" aria-live="polite"></p>
+              <p class="api-note">Fieldkit hashes the password locally and sends only the first 5 characters of its SHA-1 hash to <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a> over HTTPS. The service returns a range of hash suffixes; Fieldkit matches locally and discards the rest. The password field is cleared after each check. This check is not an email-breach search.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-hash" aria-labelledby="hash-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">INTEGRITY</p><h2 id="hash-title">SHA-256 hash</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Runs locally</span>
+          </div>
+          <article class="card narrow">
+            <h3>Hash text</h3>
+            <p class="muted">Create a SHA-256 digest from text using the browser’s Web Crypto API.</p>
+            <label for="hash-input">Text to hash</label>
+            <textarea id="hash-input" rows="5" placeholder="Enter text"></textarea>
+            <button class="button primary" id="make-hash" type="button">Generate SHA-256</button>
+            <label for="hash-output">Digest</label>
+            <div class="output-row">
+              <output id="hash-output">—</output>
+              <button class="icon-button" id="copy-hash" type="button">Copy</button>
+            </div>
+            <p id="hash-status" class="feedback" aria-live="polite"></p>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-encode" aria-labelledby="encode-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">TEXT UTILITIES</p><h2 id="encode-title">Encode &amp; decode</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Runs locally</span>
+          </div>
+          <article class="card narrow">
+            <div class="field-row">
+              <div>
+                <label for="encoding-type">Format</label>
+                <select id="encoding-type">
+                  <option value="base64">Base64 (UTF-8)</option>
+                  <option value="url">URL component</option>
+                  <option value="hex">Hex (UTF-8)</option>
+                </select>
+              </div>
+              <div>
+                <label for="encoding-mode">Action</label>
+                <select id="encoding-mode">
+                  <option value="encode">Encode</option>
+                  <option value="decode">Decode</option>
+                </select>
+              </div>
+            </div>
+            <label for="encoding-input">Input</label>
+            <textarea id="encoding-input" rows="5" placeholder="Enter text"></textarea>
+            <button class="button primary" id="run-encoding" type="button">Convert</button>
+            <label for="encoding-output">Result</label>
+            <div class="output-row">
+              <output id="encoding-output">—</output>
+              <button class="icon-button" id="copy-encoding" type="button">Copy</button>
+            </div>
+            <p id="encoding-status" class="feedback" aria-live="polite"></p>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-network" aria-labelledby="network-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">NETWORK BASICS</p><h2 id="network-title">IPv4 subnet calculator</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Runs locally</span>
+          </div>
+          <article class="card narrow">
+            <p class="muted">Calculate the network and broadcast addresses for an IPv4 address and CIDR prefix.</p>
+            <div class="field-row">
+              <div><label for="network-ip">IPv4 address</label><input id="network-ip" inputmode="decimal" placeholder="192.168.1.10"></div>
+              <div><label for="network-prefix">CIDR prefix</label><input id="network-prefix" inputmode="numeric" type="number" min="0" max="32" value="24"></div>
+            </div>
+            <button class="button primary" id="calculate-network" type="button">Calculate</button>
+            <p id="network-status" class="feedback" aria-live="polite"></p>
+            <dl class="details-grid" id="network-results" hidden>
+              <div><dt>Network address</dt><dd id="network-address"></dd></div>
+              <div><dt>Subnet mask</dt><dd id="subnet-mask"></dd></div>
+              <div><dt>Broadcast address</dt><dd id="broadcast-address"></dd></div>
+              <div><dt>Total addresses</dt><dd id="address-count"></dd></div>
+            </dl>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-connection" aria-labelledby="connection-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">YOUR CONNECTION</p><h2 id="connection-title">Connection snapshot</h2></div>
+            <span class="api-badge">Optional public lookup</span>
+          </div>
+          <article class="card narrow">
+            <h3>See what this connection reveals</h3>
+            <p class="muted">With your permission, a public IP information service can report your public IP, network provider, broad region, and time zone. Region data is approximate—not your address.</p>
+            <button class="button primary" id="run-connection-check" type="button">Check my connection</button>
+            <p id="connection-status" class="feedback" aria-live="polite"></p>
+            <dl class="details-grid connection-results" id="connection-results" hidden>
+              <div><dt>Public IP</dt><dd id="connection-ip"></dd></div>
+              <div><dt>IP version</dt><dd id="connection-version"></dd></div>
+              <div><dt>Provider / network</dt><dd id="connection-provider"></dd></div>
+              <div><dt>Autonomous system</dt><dd id="connection-asn"></dd></div>
+              <div><dt>Approximate region</dt><dd id="connection-region"></dd></div>
+              <div><dt>Time zone</dt><dd id="connection-timezone"></dd></div>
+            </dl>
+            <p class="api-note">This only runs when you click the button. Your request goes to <a href="https://ipwho.is/" target="_blank" rel="noopener noreferrer">ipwho.is</a>, which sees your public IP and may log requests. No API key is required; the service may rate-limit use.</p>
+          </article>
+
+          <article class="card narrow browser-card">
+            <h3>Browser privacy snapshot</h3>
+            <p class="muted">These details are read locally by this page and are not sent to Fieldkit.</p>
+            <dl class="details-grid" id="browser-results">
+              <div><dt>Secure page</dt><dd id="browser-secure"></dd></div>
+              <div><dt>Cookies available</dt><dd id="browser-cookies"></dd></div>
+              <div><dt>Privacy preference</dt><dd id="browser-privacy"></dd></div>
+              <div><dt>Language</dt><dd id="browser-language"></dd></div>
+              <div><dt>Time zone</dt><dd id="browser-timezone"></dd></div>
+              <div><dt>Screen size</dt><dd id="browser-screen"></dd></div>
+            </dl>
+            <p class="api-note">This snapshot is informational. It does not test VPN, proxy, DNS, or WebRTC leaks and cannot guarantee anonymity.</p>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-lookup" aria-labelledby="lookup-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">PUBLIC INFRASTRUCTURE</p><h2 id="lookup-title">IP allocation lookup</h2></div>
+            <span class="api-badge">Public RDAP API</span>
+          </div>
+          <article class="card narrow">
+            <h3>Look up a public IPv4 address</h3>
+            <p class="muted">Shows basic network registration details such as the allocated range and network name. It does not provide a person’s identity or precise location.</p>
+            <label for="lookup-ip">Public IPv4 address</label>
+            <input id="lookup-ip" inputmode="decimal" placeholder="For example, 8.8.8.8">
+            <button class="button primary" id="run-lookup" type="button">Look up allocation</button>
+            <p id="lookup-status" class="feedback" aria-live="polite"></p>
+            <dl class="details-grid" id="lookup-results" hidden>
+              <div><dt>Network name</dt><dd id="rdap-name"></dd></div>
+              <div><dt>Registry handle</dt><dd id="rdap-handle"></dd></div>
+              <div><dt>Address range</dt><dd id="rdap-range"></dd></div>
+              <div><dt>Country code</dt><dd id="rdap-country"></dd></div>
+              <div><dt>Network type</dt><dd id="rdap-type"></dd></div>
+            </dl>
+            <p class="api-note">The IP is sent to rdap.org to retrieve public registration data. The service may log requests and apply its own rate limits. No API key is required.</p>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-domain" aria-labelledby="domain-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">PUBLIC REGISTRATION DATA</p><h2 id="domain-title">Domain information</h2></div>
+            <span class="api-badge">Public RDAP service</span>
+          </div>
+          <article class="card narrow">
+            <h3>Look up a domain’s technical registration</h3>
+            <p class="muted">View public registration dates, registrar, nameservers, and domain status. RDAP may omit private registrant details; Fieldkit does not display personal contact information.</p>
+            <label for="domain-input">Domain name</label>
+            <input id="domain-input" inputmode="url" autocomplete="off" spellcheck="false" placeholder="example.com">
+            <button class="button primary" id="run-domain-lookup" type="button">Look up domain</button>
+            <p id="domain-status" class="feedback" aria-live="polite"></p>
+            <dl class="details-grid" id="domain-results" hidden>
+              <div><dt>Domain</dt><dd id="domain-name"></dd></div>
+              <div><dt>Registrar</dt><dd id="domain-registrar"></dd></div>
+              <div><dt>Registered</dt><dd id="domain-registered"></dd></div>
+              <div><dt>Expires</dt><dd id="domain-expires"></dd></div>
+              <div><dt>DNSSEC</dt><dd id="domain-dnssec"></dd></div>
+              <div><dt>Status</dt><dd id="domain-state"></dd></div>
+              <div class="detail-wide"><dt>Nameservers</dt><dd id="domain-nameservers"></dd></div>
+            </dl>
+            <p class="api-note">The domain is sent to <a href="https://rdap.org/" target="_blank" rel="noopener noreferrer">rdap.org</a>, which routes the request to the appropriate domain registry. The registry may log requests and apply its own terms or rate limits. No API key is required.</p>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-gmail" aria-labelledby="gmail-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">PERSONAL ACCOUNT SAFETY</p><h2 id="gmail-title">Gmail self-audit</h2></div>
+            <span class="api-badge">External checks are opt-in</span>
+          </div>
+          <article class="card narrow">
+            <h3>Check your own address safely</h3>
+            <p class="muted">Fieldkit checks the address format in your browser and does not send or save it. Use the official services below to review your Google account and check whether an address appears in reported breaches.</p>
+            <label for="gmail-address">Your Gmail address</label>
+            <input id="gmail-address" type="email" inputmode="email" autocomplete="off" spellcheck="false" placeholder="you@gmail.com">
+            <button class="button primary" id="check-gmail" type="button">Validate address</button>
+            <p id="gmail-status" class="feedback" aria-live="polite"></p>
+            <div class="gmail-links" id="gmail-links" hidden>
+              <h3>Continue with trusted services</h3>
+              <a class="resource-link" href="https://myaccount.google.com/security-checkup" target="_blank" rel="noopener noreferrer">
+                <span><strong>Google Security Checkup</strong><small>Review recent activity, devices, and account protections.</small></span><span aria-hidden="true">↗</span>
+              </a>
+              <a class="resource-link" href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank" rel="noopener noreferrer">
+                <span><strong>Google 2-Step Verification</strong><small>Review or enable an additional sign-in step.</small></span><span aria-hidden="true">↗</span>
+              </a>
+              <a class="resource-link" id="hibp-lookup-link" href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">
+                <span><strong>Search Have I Been Pwned</strong><small>Opens the official results for this address in a new tab.</small></span><span aria-hidden="true">↗</span>
+              </a>
+              <div class="notice compact"><span aria-hidden="true">ⓘ</span><p>The address will be included in the Have I Been Pwned URL and sent to that service. It may appear in browser history and service logs. Fieldkit cannot read their results automatically; return here after checking.</p></div>
+              <div class="gmail-return" id="gmail-return" hidden>
+                <h3>What did the official results show?</h3>
+                <div class="gmail-result-options">
+                  <button class="button result-option" type="button" data-gmail-result="none" aria-pressed="false">No breaches listed</button>
+                  <button class="button result-option" type="button" data-gmail-result="found" aria-pressed="false">Breaches listed</button>
+                  <button class="button result-option" type="button" data-gmail-result="unknown" aria-pressed="false">Couldn’t check</button>
+                </div>
+                <p id="gmail-followup" class="feedback" aria-live="polite"></p>
+              </div>
+            </div>
+            <div class="notice compact"><span aria-hidden="true">ⓘ</span><p>A breach checker may learn which address you searched. Fieldkit does not receive results, access your inbox, reveal leaked passwords, or search for accounts tied to someone else. Never enter your Google password outside Google’s official sign-in pages.</p></div>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-username" aria-labelledby="username-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">PERSONAL PRIVACY</p><h2 id="username-title">Username reuse audit</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Runs locally</span>
+          </div>
+          <article class="card narrow">
+            <h3>Review handles on accounts you own</h3>
+            <p class="muted">Add accounts you already know are yours. Fieldkit compares your entries locally and flags repeated handles. It does not query any platform or reveal whether another person has an account.</p>
+            <div class="field-row account-entry">
+              <div>
+                <label for="account-platform">Platform</label>
+                <select id="account-platform">
+                  <option value="Telegram">Telegram</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="GitHub">GitHub</option>
+                  <option value="Roblox">Roblox</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="Twitch">Twitch</option>
+                  <option value="Reddit">Reddit</option>
+                  <option value="Discord">Discord</option>
+                  <option value="X">X</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="account-username">Your username</label>
+                <input id="account-username" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Enter your handle">
+              </div>
+            </div>
+            <button class="button" id="add-own-account" type="button">Add account</button>
+            <p id="username-entry-status" class="feedback" aria-live="polite"></p>
+            <ul id="own-account-list" class="account-list" aria-label="Accounts added to this audit"></ul>
+            <button class="button primary" id="check-username-reuse" type="button">Check my accounts</button>
+            <p id="username-status" class="feedback" aria-live="polite"></p>
+            <section id="username-results" class="username-results" aria-live="polite" hidden>
+              <h3>Audit results</h3>
+              <ul id="username-result-list" class="tips"></ul>
+            </section>
+            <div class="notice compact"><span aria-hidden="true">ⓘ</span><p>Use this only for accounts you own. Reused public handles can make accounts easier to connect. Consider changing reused handles, making profiles private, or deleting accounts you no longer use through each platform’s official settings. Your list is not saved by Fieldkit.</p></div>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-resources" aria-labelledby="resources-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">CURATED DIRECTORY</p><h2 id="resources-title">Privacy &amp; security resources</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Search locally</span>
+          </div>
+          <article class="card narrow">
+            <p class="muted">A small selection of resources inspired by OSINT Catalog’s categories. Search and filter here; Fieldkit does not send your search terms anywhere.</p>
+            <label for="resource-search">Search resources</label>
+            <input id="resource-search" type="search" autocomplete="off" placeholder="Try “domain”, “password”, or “image”">
+            <label for="resource-category">Category</label>
+            <select id="resource-category">
+              <option value="all">All resources</option>
+              <option value="account">Account safety</option>
+              <option value="domain">Domains &amp; infrastructure</option>
+              <option value="privacy">Privacy &amp; learning</option>
+            </select>
+            <p id="resource-count" class="feedback" aria-live="polite"></p>
+            <div class="resource-grid" id="resource-grid">
+              <article class="resource-card" data-category="account" data-search="password breached password leaks have i been pwned hibp compromised">
+                <span class="resource-tag">ACCOUNT SAFETY</span>
+                <h3>Compromised password check</h3>
+                <p>Check a password with HIBP’s privacy-preserving range API. The full password stays in your browser.</p>
+                <button class="text-action" type="button" data-open-panel="passwords">Open Fieldkit tool <span aria-hidden="true">→</span></button>
+              </article>
+              <article class="resource-card" data-category="account" data-search="google gmail account security checkup two step verification">
+                <span class="resource-tag">ACCOUNT SAFETY</span>
+                <h3>Google Security Checkup</h3>
+                <p>Review sign-in activity, recovery options, and security settings for your Google account.</p>
+                <a class="text-action" href="https://myaccount.google.com/security-checkup" target="_blank" rel="noopener noreferrer">Open Google Security Checkup <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="resource-card" data-category="domain" data-search="domain registration whois rdap registrar nameserver dnssec">
+                <span class="resource-tag">DOMAIN</span>
+                <h3>Domain registration lookup</h3>
+                <p>View public registrar, registration dates, nameservers, DNSSEC, and status information.</p>
+                <button class="text-action" type="button" data-open-panel="domain">Open Fieldkit tool <span aria-hidden="true">→</span></button>
+              </article>
+              <article class="resource-card" data-category="domain" data-search="ip address network allocation asn internet registry rdap">
+                <span class="resource-tag">NETWORK</span>
+                <h3>IP allocation lookup</h3>
+                <p>Review public IP network registration metadata. It does not identify a person or provide precise location.</p>
+                <button class="text-action" type="button" data-open-panel="lookup">Open Fieldkit tool <span aria-hidden="true">→</span></button>
+              </article>
+              <article class="resource-card" data-category="privacy" data-search="image metadata exif privacy location geotag own photos exiftool">
+                <span class="resource-tag">IMAGE PRIVACY</span>
+                <h3>ExifTool</h3>
+                <p>Official documentation for inspecting metadata in your own images, including camera details and location tags.</p>
+                <a class="text-action" href="https://exiftool.org/" target="_blank" rel="noopener noreferrer">Read ExifTool documentation <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="resource-card" data-category="privacy" data-search="wayback machine archive website history own site public pages">
+                <span class="resource-tag">WEB ARCHIVE</span>
+                <h3>Internet Archive Wayback Machine</h3>
+                <p>Review archived versions of public pages. Use it for your own sites or publicly available material.</p>
+                <a class="text-action" href="https://web.archive.org/" target="_blank" rel="noopener noreferrer">Open the Wayback Machine <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="resource-card" data-category="privacy" data-search="cisa known exploited vulnerabilities catalog defensive security vulnerability">
+                <span class="resource-tag">DEFENSIVE SECURITY</span>
+                <h3>CISA Known Exploited Vulnerabilities</h3>
+                <p>Official catalog to help defenders prioritize known exploited vulnerabilities in systems they manage.</p>
+                <a class="text-action" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer">Open CISA catalog <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="resource-card" data-category="privacy" data-search="osint catalog directory tools guides open source intelligence">
+                <span class="resource-tag">LEARN</span>
+                <h3>OSINT Catalog</h3>
+                <p>Browse its directory and guides. Verify each tool’s terms and use resources only for lawful, authorized purposes.</p>
+                <a class="text-action" href="https://osint-catalog.org/" target="_blank" rel="noopener noreferrer">Visit OSINT Catalog <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+            <p id="resource-empty" class="feedback" hidden>No resources match that search. Try another term or category.</p>
+            <div class="notice compact"><span aria-hidden="true">ⓘ</span><p>External sites have their own privacy policies and terms. Fieldkit does not endorse every tool in the wider OSINT Catalog; this list is intentionally limited to self-audit, public technical metadata, privacy, and defensive learning.</p></div>
+          </article>
+        </section>
+
+        <section class="panel" id="panel-ports" aria-labelledby="ports-title" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">NETWORK BASICS</p><h2 id="ports-title">Port reference</h2></div>
+            <span class="local-badge"><span class="status-dot"></span> Offline reference</span>
+          </div>
+          <article class="card narrow">
+            <h3>Common service ports</h3>
+            <p class="muted">A reference for understanding services on systems you own or administer. This browser app does not probe or scan ports.</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Port</th><th>Common service</th><th>Use</th></tr></thead>
+                <tbody>
+                  <tr><td>22/TCP</td><td>SSH</td><td>Secure remote administration</td></tr>
+                  <tr><td>53/TCP/UDP</td><td>DNS</td><td>Domain name resolution</td></tr>
+                  <tr><td>80/TCP</td><td>HTTP</td><td>Unencrypted web traffic</td></tr>
+                  <tr><td>443/TCP</td><td>HTTPS</td><td>Encrypted web traffic</td></tr>
+                  <tr><td>3389/TCP</td><td>RDP</td><td>Windows remote desktop</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="notice compact"><span aria-hidden="true">ⓘ</span><p>To review listening services on your own Windows machine, open PowerShell and run <code>Get-NetTCPConnection -State Listen</code>. Don’t probe systems without permission.</p></div>
+          </article>
+        </section>
+      </div>
+      <footer><span>FIELDKIT</span><span>Made for learning and defense.</span></footer>
+    </main>
+  </body>
+</html>
